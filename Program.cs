@@ -30,17 +30,23 @@ namespace Kontur.Courses.Git
 		{
 			if (line.Length == 0) return new string[0];
 			List<string> res = new List<string> {""};
-			bool isDigit = char.IsDigit(line[0]);
+			int charClass = GetCharClass(line[0]);
 			foreach (var ch in line)
 			{
-				if (char.IsDigit(ch) != isDigit)
+				if (GetCharClass(ch) != charClass)
 				{
-					res.Add("");
-					isDigit = !isDigit;
+					if (res.Last() != "") res.Add("");
+					charClass = GetCharClass(ch);
 				}
-				res[res.Count - 1] += ch;
+				if (!char.IsWhiteSpace(ch))
+					res[res.Count - 1] += ch;
 			}
 			return res.Select(item => item.Trim()).ToArray();
+		}
+
+		private static int GetCharClass(char c)
+		{
+			return char.IsDigit(c) ? 0 : char.IsLetter(c) ? 1 : 2;
 		}
 	}
 }
