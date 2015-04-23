@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Kontur.Courses.Git
 {
@@ -39,7 +40,7 @@ namespace Kontur.Courses.Git
 				}
 				res[res.Count - 1] += ch;
 			}
-			return res.ToArray();
+			return res.Select(item => item.Trim()).ToArray();
 		}
 	}
 }
