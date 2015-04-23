@@ -27,7 +27,8 @@ namespace Kontur.Courses.Git
 			{
 				var v1 = TryParseDouble(args[0]);
 				var v2 = TryParseDouble(args[2]);
-				if (!v1.HasValue || !v2.HasValue) return v1;
+				if (!v1.HasValue) return v1;
+				if (!v2.HasValue) return v2;
 				return lastResult = Execute(args[1], v1.Value, v2.Value);
 			}
 			return Maybe<double>.FromError("Error input");
