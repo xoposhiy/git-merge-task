@@ -15,10 +15,12 @@ namespace Kontur.Courses.Git
 		{
 			while (true)
 			{
+				Console.ForegroundColor = ConsoleColor.Gray;
 				var line = Console.ReadLine();
 				if (line == null) break;
 				var args = SplitInput(line);
 				var result = calculator.Calculate(args);
+				Console.ForegroundColor = result.HasValue ? ConsoleColor.Green : ConsoleColor.Red;
 				Console.WriteLine("> " + result);
 			}
 		}
